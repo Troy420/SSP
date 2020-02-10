@@ -18,6 +18,7 @@ $brand = mysqli_fetch_assoc($brand_query);
 // SIZE QUERY
 $size_string = $product['sizes'];
 $size_array = explode(',', $size_string);
+// SIZE_ARRAY JADI NYA [0]Small : 3 [1]Medium : 2
 ?>
 
 <?php ob_start(); ?>
@@ -47,8 +48,12 @@ $size_array = explode(',', $size_string);
                         <option value=""></option>
                         <?php foreach($size_array as $string){
                             $string_array = explode(' : ', $string);
+                            // STRING_ARRAY JADI [0]Small [1]3 [0]Medium [1]2 [0]Large [1]11
+                            // [0]{Small, Medium, Large} [1]{3 2 11}
                             $size = $string_array[0];
+                            // SIZE JADI Small Medium Large
                             $available_size = $string_array[1];
+                            // AVAILABLE_SIZE = 3 2 11
                             echo '<option value="' .$size. '"data-available="'.$available_size.'">
                                 '.$size.' ('.$available_size.' Available)
                             </option>';
@@ -62,9 +67,10 @@ $size_array = explode(',', $size_string);
                 </div>
                 <div>
                         <input type="button" onclick='add_to_cart(); return false' value="add to cart" class='primary-btn text-center'>
+                        <!-- <button method="post" class="primary-btn text-uppercase" onclick="add_to_cart(); return false;" >add to cart</button> -->
                 </div>
             </form>
-            <!-- <button class="primary-btn text-uppercase" onclick="add_to_cart(); return false;" >add to cart</button> -->
+            
         </div>
     </div>
 </div>

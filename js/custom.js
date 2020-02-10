@@ -41,7 +41,7 @@ function add_to_cart() {
   jQuery("#modal_errors").html("");
   var size = jQuery("#size-id").val();
   var quantity = jQuery("#quantity-id").val();
-  var available = jQuery("#available-id").val();
+  var available = parseInt(jQuery("#available-id").val());
   var error = "";
   var data = jQuery("#add_product_form").serialize();
 

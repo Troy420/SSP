@@ -5,14 +5,14 @@ $product_id = isset($_POST['product-isset']) ? sanitize($_POST['product-isset'])
 $size = isset($_POST['size-isset']) ? sanitize($_POST['size-isset']) : '';
 $available = isset($_POST['available-isset']) ? sanitize($_POST['available-isset']) : '';
 $quantity = isset($_POST['quantity-isset']) ? sanitize($_POST['quantity-isset']) : '';
-// $item = array();
+$item = array();
 $item[] = array(
     'id' => $product_id,
     'size' => $size,
     'quantity' => $quantity,
 );
 
-$domain = ( ($_SERVER['HTTP_HOST'] != 'localhost')? '.'.$_SERVER['HTTP_HOST'] : false );
+$domain = ($_SERVER['HTTP_HOST'] != 'localhost')? '.'.$_SERVER['HTTP_HOST'] : false;
 
 $selectedProductsTable = $db->query("SELECT * FROM `products` WHERE `id` = '{$product_id}' ");
 $allProductsData = mysqli_fetch_assoc($selectedProductsTable);
@@ -48,7 +48,9 @@ if($cart_id != ""){
     $db->query("UPDATE `cart` SET `items` = '$items_json', `expiry_date` = '$cart_expire' WHERE `id` = '$cart_id' ");
     
     // Reset cookie time
-    setcookie(CART_COOKIE, '', 1, "/", $domain, false);
+    // setcookie(CART_COOKIE, '', 1, "/", $domain, false);
+    setcookie(CART_COOKIE, "", time() - 3600, "/", $domain, false);
+    // unset($_COOKIE[CART_COOKIE]);
 
     // Set cookie time to a month
     setcookie(CART_COOKIE, $cart_id, CART_COOKIE_EXPIRE, '/', $domain, false);

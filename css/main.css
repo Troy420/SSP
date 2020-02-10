@@ -244,7 +244,8 @@ button {
     border: 2px solid black;
     display: flex;
     background: white;
-    position: relative; }
+    position: absolute;
+    top: 1rem; }
     .detail-wrapper .all-wrap .close-btn {
       position: absolute;
       right: 5px;
@@ -293,3 +294,17 @@ button {
   justify-content: center;
   align-items: center;
   padding: 20px; }
+
+#step1 {
+  display: flex;
+  flex-wrap: wrap; }
+
+#step2 {
+  display: none;
+  flex-wrap: wrap; }
+
+#check-out-btn {
+  display: none; }
+
+#back-btn {
+  display: none; }

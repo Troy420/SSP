@@ -371,7 +371,8 @@ button {
     border: 2px solid black;
     display: flex;
     background: white;
-    position: relative;
+    position: absolute;
+    top: 1rem;
 
     .close-btn {
       position: absolute;
@@ -446,4 +447,23 @@ button {
   justify-content: center;
   align-items: center;
   padding: 20px;
+}
+
+// CHECK OUT MODAL
+#step1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#step2 {
+  display: none;
+  flex-wrap: wrap;
+}
+
+#check-out-btn {
+  display: none;
+}
+
+#back-btn {
+  display: none;
 }

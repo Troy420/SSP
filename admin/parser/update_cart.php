@@ -5,9 +5,9 @@
     $edit_id = (isset($_POST['edit_id'])) ? sanitize($_POST['edit_id']) : "";
     $edit_size = (isset($_POST['edit_size'])) ? sanitize($_POST['edit_size']) : "";
 
-    $selectedCartTable = $db->query("SELECT * FROM `cart` WHERE `id` = '$cart_id'; ");
+    $selectedCartTable = $db->query("SELECT * FROM `cart` WHERE `id` = '$cart_id'");
     $allCartData = mysqli_fetch_assoc($selectedCartTable);
-    $ItemsDecoded = json_decode($allCartData['items'], true);
+    $itemsDecoded = json_decode($allCartData['items'], true);
     $updated_items = array();
 
     $domain = ($_SERVER['HTTP_HOST'] != 'localhost') ? ".".$_SERVER['HTTP_HOST'] : false;
@@ -16,20 +16,22 @@
 
     // ERROR HERE!
     if($mode == 'minusone'){
-        foreach($ItemsDecoded as $items){
-            
-            $product_id = $items['id']; var_dump($items['id']);
-            $selectedProductsTable = $db->query("SELECT * FROM `products` WHERE `id` = '$product_id'; ");
-            $allProductsData = mysqli_fetch_assoc($selectedProductsTable);
+        foreach($itemsDecoded as $items){
+            if($items['id'] == $edit_id && $items['size'] == $edit_size){
+                $items['quantity'] = $items['quantity'] - 1;
+            }
+            if($items['quantity'] > 0){
+                $updated_items[] = $items;
+            }
         }
     }
 
     if($mode == 'plusone'){
-        foreach($ItemsDecoded as $items){
+        foreach($itemsDecoded as $items){
             if($items['id'] == $edit_id && $items['size'] == $edit_size){
-                $items['quantity'] = $item['quantity'] + 1;
+                $items['quantity'] = $items['quantity'] + 1;
             }
-            $updated_items[] = $Items;
+            $updated_items[] = $items;
         }
     }
 
@@ -39,8 +41,9 @@
         $_SESSION['UPDATE_SUCCESS'] = 'Your shopping cart has been updated';
     }
 
-    // if(empty($updated_items)){
-    //     $db->query("DELETE FROM `cart` WHERE `id` = '$cart_id' ");
-    //     setcookie(CART_COOKIE, '', 1, '/', $domain, false);
-    // }
+    if(empty($updated_items)){
+        $db->query("DELETE FROM `cart` WHERE `id` = '$cart_id' ");
+        setcookie(CART_COOKIE, "", time() - 3600, "/");
+        unset($_COOKIE[CART_COOKIE]);
+    }
 ?>

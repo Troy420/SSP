@@ -9,7 +9,8 @@ if(mysqli_connect_errno()){
 session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'].'/ssp/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/ssp/helpers/helpers.php';
+require_once BASEURL.'/ssp/helpers/helpers.php';
+require BASEURL.'/ssp/vendor/autoload.php';
 
 $cart_id = "";
 if(isset($_COOKIE[CART_COOKIE])){

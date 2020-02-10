@@ -1,0 +1,9 @@
+{
+  "name": "online-shop",
+  "description": "its an online shop",
+  "version": "0.1.0",
+  "license": "MIT",
+  "require": {
+    "stripe/stripe-php": "^7.23"
+  }
+}
