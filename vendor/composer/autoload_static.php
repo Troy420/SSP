@@ -11,12 +11,20 @@ class ComposerStaticInitb679612293d48bd501f73664ab82fc49
         array (
             'Stripe\\' => 7,
         ),
+        'M' => 
+        array (
+            'Midtrans\\' => 9,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Midtrans\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/midtrans/midtrans-php/Midtrans',
         ),
     );
 

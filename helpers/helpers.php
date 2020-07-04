@@ -72,3 +72,14 @@ function get_categories($child_id){
     $category = mysqli_fetch_assoc($catQuery);
     return $category;
 }
+
+function initPaymentGateway(){
+    // Set your Merchant Server Key
+    \Midtrans\Config::$serverKey = 'SB-Mid-server-IQtOzEZNY2A__Z2uBpLIgVLt';
+    // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+    \Midtrans\Config::$isProduction = false;
+    // Set sanitization on (default)
+    \Midtrans\Config::$isSanitized = true;s
+    // Set 3DS transaction for credit card to true
+    \Midtrans\Config::$is3ds = true;
+}

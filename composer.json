@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "require": {
-    "stripe/stripe-php": "^7.23"
+    "stripe/stripe-php": "^7.23",
+    "midtrans/midtrans-php": "^2.3"
   }
 }
